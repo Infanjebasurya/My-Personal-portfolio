@@ -247,7 +247,7 @@ const About = () => {
                 {/* Download Resume Button */}
                 <div className="mt-6 pt-4 border-t border-gray-100">
                   <a
-                    href="/resume.pdf"
+                    href="https://drive.google.com/file/d/1xd6Yl_4X0UW5i0k8zk4tWYMtSShdFHY2/view?usp=drivesdk"
                     download
                     className="group w-full inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 text-sm"
                   >
