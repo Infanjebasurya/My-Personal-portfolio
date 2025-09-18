@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Send, 
   Mail, 
@@ -12,15 +12,12 @@ import {
   Github,
   Linkedin,
   Twitter,
-  Calendar,
-  Coffee,
-  Zap,
-  Heart,
-  Globe,
   AlertCircle
 } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,19 +35,21 @@ const Contact = () => {
     contact: {
       email: "infantjebasurya2.0@gmail.com",
       phone: "+91 9677794485",
-      location: "Bengalore, KA",
+      location: "Bengaluru, KA",
       availability: "Available for freelance",
       timezone: "IST (UTC+5:30)",
       social: {
         github: "https://github.com/Infanjebasurya/",
         linkedin: "https://www.linkedin.com/in/infant-jeba-surya-a-33901b348/",
-        twitter: "https://twitter.com/johndoe"
+        twitter: "https://twitter.com/InfantJeba"
       }
     }
   };
 
   useEffect(() => {
     setIsVisible(true);
+    // Initialize EmailJS with your public key
+    emailjs.init("KaGosDyNdQNGt16Oq"); // Your EmailJS public key
   }, []);
 
   const validateForm = () => {
@@ -106,13 +105,21 @@ const Contact = () => {
     
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        'service_fi072gj', // Your EmailJS service ID
+        'template_g556z4e', // Your EmailJS template ID
+        form.current,
+        'KaGosDyNdQNGt16Oq' // Your EmailJS public key
+      );
+      
+      console.log('Email sent successfully:', result.text);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
       setFormErrors({});
     } catch (error) {
+      console.error('Failed to send email:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -214,9 +221,13 @@ const Contact = () => {
           
           {/* Left Column - Contact Form */}
           <div className="lg:col-span-7">
-            <div className={`bg-white rounded-2xl shadow-xl border border-gray-100 p-6 lg:p-8 transform transition-all duration-1000 delay-200 ${
-              isVisible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
-            }`}>
+            <form 
+              ref={form}
+              onSubmit={handleSubmit}
+              className={`bg-white rounded-2xl shadow-xl border border-gray-100 p-6 lg:p-8 transform transition-all duration-1000 delay-200 ${
+                isVisible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
+              }`}
+            >
               
               <div className="flex items-center space-x-3 mb-8">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
@@ -381,11 +392,15 @@ const Contact = () => {
                       ? 'bg-green-50 text-green-800 border border-green-200' 
                       : 'bg-red-50 text-red-800 border border-red-200'
                   }`}>
-                    <CheckCircle className="w-5 h-5" />
+                    {submitStatus === 'success' ? (
+                      <CheckCircle className="w-5 h-5" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5" />
+                    )}
                     <span>
                       {submitStatus === 'success' 
                         ? 'Message sent successfully! I\'ll get back to you soon.' 
-                        : 'Something went wrong. Please try again.'}
+                        : 'Something went wrong. Please try again or contact me directly.'}
                     </span>
                   </div>
                 )}
@@ -394,7 +409,6 @@ const Contact = () => {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  onClick={handleSubmit}
                   className="group w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
                 >
                   {isSubmitting ? (
@@ -410,7 +424,7 @@ const Contact = () => {
                   )}
                 </button>
               </div>
-            </div>
+            </form>
           </div>
 
           {/* Right Column - Contact Information */}
@@ -461,7 +475,9 @@ const Contact = () => {
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}>
               <div className="flex items-center space-x-3 mb-6">
-                <Globe className="w-6 h-6 text-blue-600" />
+                <div className="w-6 h-6 bg-blue-600 rounded-md flex items-center justify-center">
+                  <Linkedin className="w-4 h-4 text-white" />
+                </div>
                 <h3 className="text-xl font-semibold text-gray-900">Connect With Me</h3>
               </div>
               
@@ -512,15 +528,14 @@ const Contact = () => {
               
               <div className="mt-6 pt-6 border-t border-green-200">
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Coffee className="w-4 h-4" />
-                  <span>Fueled by coffee and great ideas ☕</span>
+                  <span>Always excited to work on new projects!</span>
                 </div>
               </div>
             </div>
 
           </div>
         </div>
-      </div>  
+      </div>
     </section>
   );
 };
