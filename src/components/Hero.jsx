@@ -22,7 +22,7 @@ const Hero = () => {
     location: "Bengalore,KA",
     experience: "2+ Years",
     heroImage:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      "/Assets/Images/ChatGPT-2.png",
     email: "infantjebasurya2.0@gmail.com",
     linkedin: "https://www.linkedin.com/in/infant-jeba-surya-a-33901b348/",
     github: "https://github.com/Infanjebasurya",

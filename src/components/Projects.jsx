@@ -41,9 +41,9 @@ const Projects = () => {
       {
         id: 2,
         title: "E-Commerce Platform",
-        description: "A full-featured online food ordering platform that enables users to browse restaurant.",
+        description: "A full-featured E-Commerce platform that allows users to browse products, add them to a cart, and securely place orders online.",
         image: "/Assets/Images/E-comme.png",
-        technologies: ["React", "HTML", "CSS", "Git"],
+        technologies: ["React", "JavaScript", "Sass","APIs","Rest API","SQL","Node Js", "Git"],
         category: "frontend",
         link: "https://website-eta-six-93.vercel.app/",
         github: "https://github.com/Infanjebasurya/",
@@ -71,9 +71,9 @@ const Projects = () => {
       {
         id: 5,
         title: "City Weather Finder",
-        description: "A responsive and real-time weather forecasting website.",
+        description: "I hereby declare that my project titled “City Weather Finder – A Responsive and Real-Time Weather Forecasting Website” is an original work carried out by me.",
         image: "/Assets/Images/weather.png",
-        technologies: ["React", "OpenWeather API", "Node.js", "MySQL"],
+        technologies: ["React", "OpenWeather API","Tailwind Css", "Node.js", "MySQL"],
         category: "fullstack",
         link: "https://weather-app-client-seven-gamma.vercel.app/",
         github: "https://github.com/Infanjebasurya/weather-app-server",
