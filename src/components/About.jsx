@@ -48,7 +48,7 @@ const About = () => {
   ];
 
   const achievements = [
-    { icon: Award, title: "50+ Projects", desc: "Successfully delivered" },
+    { icon: Award, title: "20+ Projects", desc: "Successfully delivered" },
     { icon: Star, title: "98% Success", desc: "Client satisfaction rate" },
     { icon: Briefcase, title: "2+ Years", desc: "Professional experience" },
     { icon: GraduationCap, title: "Always Learning", desc: "Continuous growth" }
